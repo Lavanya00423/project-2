@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Mobile Banking App </title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#e8f0fe;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+.app{
+    width:360px;
+    background:#fff;
+    border-radius:20px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+    padding:20px;
+}
+h2{text-align:center;color:#1a237e;}
+.screen{display:none;}
+.screen.active{display:block;}
+
+input,button{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+    border-radius:10px;
+    border:1px solid #ccc;
+}
+button{
+    background:#1a237e;
+    color:white;
+    border:none;
+    font-size:16px;
+}
+
+.card{
+    background:#f5f7ff;
+    border-radius:15px;
+    padding:15px;
+    margin-top:10px;
+}
+.action-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:10px;
+}
+.action{
+    background:#e3e9ff;
+    padding:10px;
+    border-radius:10px;
+    text-align:center;
+    font-size:14px;
+}
+.tx{
+    font-size:14px;
+    margin-top:5px;
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+
+<!-- LOGIN -->
+<div class="screen active" id="login">
+<h2>Secure Login</h2>
+<input type="text" placeholder="Username">
+<input type="password" placeholder="Password">
+<button onclick="openScreen('dashboard')">Login</button>
+</div>
+
+<!-- DASHBOARD -->
+<div class="screen" id="dashboard">
+<h2>Dashboard</h2>
+<div class="card">
+<h3>Account Balance</h3>
+<h2>₹ 25,450</h2>
+</div>
+
+<div class="action-grid">
+<div class="action" onclick="openScreen('transfer')">Transfer</div>
+<div class="action">Bill Pay</div>
+<div class="action">QR Scan</div>
+<div class="action" onclick="openScreen('history')">History</div>
+</div>
+</div>
+
+<!-- TRANSFER -->
+<div class="screen" id="transfer">
+<h2>Transfer Money</h2>
+<input type="text" placeholder="Receiver Account">
+<input type="number" placeholder="Amount">
+<button onclick="openScreen('dashboard')">Send</button>
+</div>
+
+<!-- HISTORY -->
+<div class="screen" id="history">
+<h2>Transaction History</h2>
+<div class="tx">₹1200 → Electricity Bill</div>
+<div class="tx">₹500 → Grocery</div>
+<div class="tx">₹3000 → Rent</div>
+<button onclick="openScreen('dashboard')">Back</button>
+</div>
+
+</div>
+
+<script>
+function openScreen(id){
+document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
+</script>
+</body>
+</html>
